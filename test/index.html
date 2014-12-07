@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-git2.min.js"></script>
+    <script type="text/javascript" src="../uri-util.js"></script>
+</head>
+<style>
+.demo {
+    margin: 30px;
+}
+.string {
+    color: green;
+}
+.number {
+    color: darkorange;
+}
+.boolean {
+    color: blue;
+}
+.null {
+    color: magenta;
+}
+.key {
+    color: red;
+}
+p {
+	margin: 0;
+}
+.btn:focus {
+  outline: none;
+}
+</style>
+
+<body>
+    <div class="demo">
+        <pre>
+        	<p>URL: <span id='url'></span></p>
+        	<p id='qs'></p>
+        </pre>
+        <button type="button" class="btn btn-default">Get Query Object</button>
+    </div>
+</body>
+
+<script type="text/javascript">
+function syntaxHighlight(json) {
+    json = json.replace(/&/g, '&').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function(match) {
+        var cls = 'number';
+        if (/^"/.test(match)) {
+            if (/:$/.test(match)) {
+                cls = 'key';
+            } else {
+                cls = 'string';
+            }
+        } else if (/true|false/.test(match)) {
+            cls = 'boolean';
+        } else if (/null/.test(match)) {
+            cls = 'null';
+        }
+        return '<span class="' + cls + '">' + match + '</span>';
+    });
+}
+
+$(document).ready(function() {
+    $('#url').text(location.href);
+    $('button').on('click', function() {
+        var queryStrings = URIUtil.parse(location.search);
+        $('#qs').html(syntaxHighlight(JSON.stringify(queryStrings, undefined, 4)));
+    });
+});
+</script>
+
+</html>

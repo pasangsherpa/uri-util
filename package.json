@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/pasangsherpa/uri-util/issues"
   },
-  "homepage": "https://github.com/pasangsherpa/uri-util"
+  "homepage": "https://github.com/pasangsherpa/uri-util",
+  "devDependencies": {
+    "mocha": "*"
+  }
 }

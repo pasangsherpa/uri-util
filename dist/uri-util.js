@@ -1,6 +1,6 @@
 /*!
  * uri-util - URI Util module to work with URIs in browser and server
- * @version v1.0.1 - Sun Dec 07 2014
+ * @version v1.1.0 - Sun Dec 07 2014
  * @link https://github.com/pasangsherpa/uri-util
  * @author Pasang Sherpa <pgyalzen@gmail.com> (https://github.com/pasangsherpa)
  * @license MIT
@@ -12,16 +12,16 @@
     var isAMD = typeof define === 'function' && define.amd;
 
     var URIUtil = {
-        parse: function(uri) {
-            if (typeof uri !== 'string') {
+        parse: function(str) {
+            if (typeof str !== 'string') {
                 return {};
             }
-            uri = uri.trim().replace(/^(.*?)(\?|#)/, '').replace(/\+/g, '%20');
-            if (!uri) {
+            str = str.trim().replace(/^(.*?)(\?|#)/, '').replace(/\+/g, '%20');
+            if (!str) {
                 return {};
             }
 
-            return uri.split('&').reduce(function(queryObj, querystring) {
+            return str.split('&').reduce(function(queryObj, querystring) {
                 querystring = querystring.split('=');
                 var key = querystring[0];
                 var val = querystring[1];
@@ -52,17 +52,17 @@
             }).join('&') : '';
         },
 
-        getQueryValue: function(uri, name) {
-            if (typeof uri !== 'string') {
+        getQueryValue: function(str, key) {
+            if (typeof str !== 'string') {
             	return '';}
-            uri = uri.trim().replace(/^(.*?)(\?|#)/, '');
-            if (!uri) {return '';}
-            return decodeURIComponent((new RegExp(name + '=([^&;]+?)(&|#|;|$)')
-                .exec(uri) || [, ''])[1].replace(/\+/g, '%20')) || null;
+            str = str.trim().replace(/^(.*?)(\?|#)/, '');
+            if (!str) {return '';}
+            return decodeURIComponent((new RegExp(key + '=([^&;]+?)(&|#|;|$)')
+                .exec(str) || [, ''])[1].replace(/\+/g, '%20')) || null;
         },
 
-        getQueryValueInLoc: function(name) {
-            return this.getQueryValue(location.search, name);
+        getQueryValueInLoc: function(key) {
+            return this.getQueryValue(location.search, key);
         }
     };
 

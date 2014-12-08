@@ -1,6 +1,6 @@
 {
   "name": "uri-util",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "URI Util module to work with URIs in browser and server",
   "main": "uri-util.js",
   "scripts": {

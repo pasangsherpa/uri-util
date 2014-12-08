@@ -47,9 +47,12 @@
 
         getQueryValue: function(str, key) {
             if (typeof str !== 'string') {
-            	return '';}
+                return '';
+            }
             str = str.trim().replace(/^(.*?)(\?|#)/, '');
-            if (!str) {return '';}
+            if (!str) {
+                return '';
+            }
             return decodeURIComponent((new RegExp(key + '=([^&;]+?)(&|#|;|$)')
                 .exec(str) || [, ''])[1].replace(/\+/g, '%20')) || null;
         },

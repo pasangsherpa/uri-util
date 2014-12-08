@@ -22,12 +22,12 @@ $ bower install --save uri-util
 
 ```js
 var URIUtil = require('uri-util');
-var url = 'https://github.com/search?q=uri-util&order=asc';
+var uri = 'https://github.com/search?q=uri-util&order=asc';
 
 var q = URIUtil.getQueryValue(uri, 'q');
 console.log(q); // 'uri-util'
 
-var query = URIUtil.parse(url);
+var query = URIUtil.parse(uri);
 console.log(query); // {'q': 'uri-util', order: 'asc'}
 
 var qs = URIUtil.stringify({'q': 'uri-util', order: 'asc'});

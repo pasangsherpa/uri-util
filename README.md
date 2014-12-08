@@ -57,6 +57,7 @@ console.log(qs); // '?q=uri-util&order=asc'
 ### Methods
 
 #### .parse(str)
+
 Parse a uri or a query string into an object.
 
 ##### str
@@ -67,13 +68,17 @@ the string to be parsed. it can either be a uri or a query string.
 
 #### .stringify(obj)
 
+Convert the given object into a query string.
+
 ##### obj
 
 Type: `Object`
 
 the object to be converted to a query string. 
 
-#### .getQueryValue(str, name)
+#### .getQueryValue(str, key)
+
+Get the value of the given query key from the given (uri or query) string. 
 
 ##### str
 
@@ -81,15 +86,17 @@ Type: `String`
 
 either a uri or a query string.
 
-##### name
+##### key
 
 Type: `String`
 
 key of the query field.
 
-#### .getQueryValueInLoc(name)
+#### .getQueryValueInLoc(key)
 
-##### name
+Get the value of the given query key from the browser uri. (works only on client-side)
+
+##### key
 
 Type: `String`
 
